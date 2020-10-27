@@ -63,8 +63,11 @@ def rolldown(start_value = 50, end_value = 0, initial_win_prob=3.0/7, end_win_pr
         current_streak, old_streak = update_streaks(current_match_result, old_match_result, current_streak, old_streak)
 
         #updating bank
-        current_money += base + min(current_money//10,5) + current_match_result + streak_income(current_streak)
-        old_money     += base + min(old_money//10,5)     + old_match_result     + streak_income(old_streak)
+        #NEW
+        current_money += current_match_result
+        old_money     += old_match_result
+        current_money += base + min(current_money//10,5) + streak_income(current_streak)
+        old_money     += base + min(old_money//10,5)     + streak_income(old_streak)
         
         if debug:
             print("Next round: " + str(current_money))
